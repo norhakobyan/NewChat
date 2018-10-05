@@ -1,41 +1,30 @@
-<!DOCTYPE html>
-<html lang = 'en'>
-<head>
-	<title>chat</title>
-	<link rel="stylesheet" type="text/css" href="./stylesheets/style.css"></link>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-</head>
-<body>
-
-	<div id="content">
-		<div id="room">
-
+<!doctype html>
+<html lang='en'>
+	<head>
+		<title>Chat</title>
+		<link rel='stylesheet' href='/stylesheets/style.css'></link>
+	</head>
+	<body>
+		<div id='content'>
+			<div id='room'></div>
+			<div id='room-list'></div>
+			<div id='messages'></div>
+			<form id='send-form'>
+				<input id='send-message' />
+				<input id='send-button' type='submit' value='Send'/>
+				<div id='help'>
+					Chat commands:
+					<ul>
+						<li>Change nickname: <code>/nick [username]</code></li>
+						<li>Join/create room: <code>/join [room name]</code></li>
+					</ul>
+				</div>
+			</form>
 		</div>
-		<div id="room-list">
-
-		</div>
-		<div id="messages">
-
-		</div>
-		<form id="send-form">
-			<input id="send-message">
-			<button id="send-form">Send</button>
-			<div id="help">
-				Chat commands:
-				<ul>
-					<li>Change nickname:<code>/nick[username]</code></li>
-					<li>Join/create room:<code>/join[room name]</code></li>
-				</ul>
-			</div>
-
-		</form>
-	</div>
-
-
-<!--	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>-->
-<script src="./javascripts/socket.io/socket.io.js"></script>
-
-		<script src="./javascripts/chat.js" type="text/javascript"></script>
-			<script src="./javascripts/chat_ui.js" type="text/javascript"></script>
-</body>
+		<script src='javascripts/socket.io/socket.io.js' type='text/javascript'></script>
+		<script src='http://code.jquery.com/jquery-1.8.0.min.js'
+		type='text/javascript'></script>
+		<script src='/javascripts/chat.js' type='text/javascript'></script>
+		<script src='/javascripts/chat_ui.js' type='text/javascript'></script>
+	</body>
 </html>

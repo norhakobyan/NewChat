@@ -1,8 +1,7 @@
 var http = require('http');
 var fs = require('fs');
 var path = require('path');
-var MimeLookup = require('mime-lookup');
-var mime = new MimeLookup(require('mime-db'));
+var mime = require('mime-types');
 var cache = {};
 
 function send404(response) {
@@ -20,13 +19,13 @@ function sendFile(response, filePath, fileContents) {
 }
 
 function serveStatic(response, cache, absPath) {
-  if(cache[absPath]) {
+  if (cache[absPath]) {
     sendFile(response, absPath, cache[absPath]);
   } else {
     fs.exists(absPath, function(exists) {
-      if(exists) {
+      if (exists) {
         fs.readFile(absPath, function(err, data) {
-          if(err) {
+          if (err) {
             send404(response);
           } else {
             cache[absPath] = data;
@@ -42,7 +41,7 @@ function serveStatic(response, cache, absPath) {
 
 var server = http.createServer(function(request, response) {
   var filePath = false;
-  if(request.url == '/') {
+  if (request.url == '/') {
     filePath = 'public/index.html';
   } else {
     filePath = 'public' + request.url;
@@ -52,8 +51,8 @@ var server = http.createServer(function(request, response) {
 });
 
 server.listen(3000, function() {
-  console.log('Server listening on port 3000,');
+  console.log("Server listening on port 3000.");
 });
 
-var chatServaer = require('./lib/chat_server');
-chatServaer.listen(server);
+var chatServer = require('./lib/chat_server');
+chatServer.listen(server);
